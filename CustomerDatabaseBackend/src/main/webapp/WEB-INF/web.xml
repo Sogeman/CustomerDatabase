@@ -774,4 +774,15 @@ standard deployment descriptor.
 -->
 <web-app xmlns:web="http://xmlns.jcp.org/xml/ns/javaee">
   <display-name>Archetype Created Web Application</display-name>
+  <filter>
+    <filter-name>CORS</filter-name>
+    <filter-class>
+        com.thetransactioncompany.cors.CORSFilter
+    </filter-class>
+
+    <init-param>
+        <param-name>cors.allowOrigin</param-name>
+        <param-value>*</param-value>
+    </init-param>
+</filter>
 </web-app>

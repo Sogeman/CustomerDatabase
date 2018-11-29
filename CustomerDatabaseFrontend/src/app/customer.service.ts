@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class Customer {
   id: number;
@@ -8,6 +8,8 @@ export class Customer {
   birthDate: string;
   activated: boolean;
 }
+
+const CUSTOMER_RESOURCE_URL = 'http://localhost:8080/customers/resources/customers';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,24 @@ export class CustomerService {
 
   constructor(private httpClient: HttpClient) { }
 
-  create(customer: Customer) {
-    this.httpClient.post().toPromise();
+  create(customer: Customer): Promise<any> {
+    return this.httpClient.post(CUSTOMER_RESOURCE_URL, customer).toPromise();
   }
+
+  retrieve(id: number): Promise<Customer> {
+    return this.httpClient.get<Customer>(CUSTOMER_RESOURCE_URL + '/' + id).toPromise();
+  }
+
+  retrieveAll(): Promise<Customer[]> {
+    return this.httpClient.get<Customer[]>(CUSTOMER_RESOURCE_URL).toPromise();
+  }
+
+  update(customer: Customer): Promise<any> {
+    return this.httpClient.put(CUSTOMER_RESOURCE_URL + '/' + customer.id, customer).toPromise();
+  }
+
+  delete(id: number): Promise<any> {
+    return this.httpClient.delete(CUSTOMER_RESOURCE_URL + '/' + id).toPromise();
+  }
+
 }

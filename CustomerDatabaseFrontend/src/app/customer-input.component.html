@@ -1,3 +1,27 @@
-<p>
-  customer-input works!
-</p>
+<form *ngIf="customer" novalidate #form="ngForm">
+  <h2>{{ customer.id ? 'Kunden bearbeiten' : 'Kunden hinzufügen' }}</h2>
+  <p *ngIf="customer.id">
+    <label>ID:</label>
+    <input disabled value="{{customer.id}}">
+  </p>
+  <p>
+    <label>Vorname:</label>
+    <input type="text" required minlength="3" maxlength="100" name="firstName" [(ngModel)]="customer.firstName">
+  </p>
+  <p>
+    <label>Nachname:</label>
+    <input type="text" required minlength="3" maxlength="100" name="lastName" [(ngModel)]="customer.lastName">
+  </p>
+  <p>
+    <label>Geburtsdatum:</label>
+    <input id="birthDate" type="date" required min="1920-01-01" max="{{today | date:'yyyy-MM-dd'}}" name="birthDate" [(ngModel)]="customer.birthDate">
+  </p>
+  <p>
+    <label>Aktiviert:</label>
+    <input type="checkbox" >
+  </p>
+  <p id="done">
+    <button type="button" (click)="clickedOkay()" *ngIf="form.valid">OK</button>
+    <button type="button" (click)="clickedCancel()">Abbruch</button>
+  </p>
+</form>

@@ -26,16 +26,15 @@ public class Customer {
 	@Column(length=100, nullable=false)
 	private String lastName;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(nullable=false)
-	private Date birthDate;
+	@Column(length=15, nullable=false)
+	private String birthDate;
 	
 	@Column(nullable=false)
 	private Boolean activated;
 	
 	public Customer() {}
 	
-	public Customer(Long id, String firstName, String lastName, Date birthdate, Boolean activated) {
+	public Customer(Long id, String firstName, String lastName, String birthdate, Boolean activated) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -43,7 +42,7 @@ public class Customer {
 		this.activated = activated;
 	}
 	
-	public Customer(String firstName, String lastName, Date birthdate, Boolean activated) {
+	public Customer(String firstName, String lastName, String birthdate, Boolean activated) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthdate;
@@ -74,11 +73,11 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 

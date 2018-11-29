@@ -1,3 +1,23 @@
-<p>
-  customer-list works!
-</p>
+<table>
+  <thead>
+    <th>ID</th>
+    <th>Vorname</th>
+    <th>Nachname</th>
+    <th>Geburtsdatum</th>
+    <th>Aktiviert</th>
+    <th><button (click)="addCustomer()">Hinzufügen</button></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customerList">
+      <td>{{ customer.id }}</td>
+      <td>{{ customer.firstName }}</td>
+      <td>{{ customer.lastName }}</td>
+      <td>{{ customer.birthDate }}</td>
+      <td><img [src]="(customer.activated == true) ? 'assets/true.png' : 'assets/false.png'"></td>
+      <td>
+        <button (click)="editCustomer(customer)"><img src="assets/edit.png"></button>
+        <button (click)="deleteCustomer(customer)"><img src="assets/delete.png"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

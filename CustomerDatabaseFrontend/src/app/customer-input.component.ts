@@ -1,15 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Customer, CustomerService } from './customer.service';
 
 @Component({
   selector: 'app-customer-input',
   templateUrl: './customer-input.component.html',
   styleUrls: ['./customer-input.component.css']
 })
-export class CustomerInputComponent implements OnInit {
+export class CustomerInputComponent {
 
-  constructor() { }
+  @Output() ok = new EventEmitter<Customer>(); // specific emit not necessry?
+  customer: Customer;
+  today: number =  Date.now();
 
-  ngOnInit() {
+  constructor(private customerService: CustomerService) { }
+
+  startAdding() {
+    this.customer = new Customer();
+  }
+
+  startEditing(id: number) {
+    this.customerService.retrieve(id)
+      .then(customer => this.customer = customer);
+  }
+
+  clickedOkay() {
+    this.createOrUpdate()
+      .then(() => {
+        this.ok.emit(this.customer);
+        this.customer = null;
+      });
+  }
+
+  createOrUpdate(): Promise<any> {
+    if (this.customer.id) {
+      return this.customerService.update(this.customer);
+    } else {
+      return this.customerService.create(this.customer);
+    }
+  }
+
+  clickedCancel() {
+    // emit not necessary in this case
+    this.customer = null;
   }
 
 }
