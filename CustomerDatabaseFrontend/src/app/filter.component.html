@@ -1,0 +1,6 @@
+  <div>
+    <input type="radio" name="filteroption" value="activated" [(ngModel)]="filterCriteria.activated"> Activated
+    <input type="radio" name="filteroption" value="name" [(ngModel)]="filterCriteria.name"> Name
+    <input type="text" name="filterText" [(ngModel)]="filterCriteria.filterText">
+    <button type="button" (click)="filterList()">Filter</button>
+  </div>

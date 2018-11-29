@@ -40,4 +40,6 @@ export class CustomerService {
     return this.httpClient.delete(CUSTOMER_RESOURCE_URL + '/' + id).toPromise();
   }
 
+  // TODO! create function for filter
+
 }

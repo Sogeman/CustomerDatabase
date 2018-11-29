@@ -7,13 +7,15 @@ import { CustomerListComponent } from './customer-list.component';
 import { CustomerInputComponent } from './customer-input.component';
 import { CustomerComponent } from './customer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterComponent } from './filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerListComponent,
     CustomerInputComponent,
-    CustomerComponent
+    CustomerComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule

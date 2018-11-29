@@ -11,7 +11,6 @@ export class CustomerListComponent implements OnInit {
   @Output() add = new EventEmitter();
   @Output() edit = new EventEmitter<number>();
   customerList: Customer[];
-  checkmark: string;
 
   constructor(private customerService: CustomerService) { }
 

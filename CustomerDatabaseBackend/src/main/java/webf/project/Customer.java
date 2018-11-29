@@ -29,7 +29,7 @@ public class Customer {
 	@Column(length=15, nullable=false)
 	private String birthDate;
 	
-	@Column(nullable=false)
+	@Column(nullable=true)
 	private Boolean activated;
 	
 	public Customer() {}

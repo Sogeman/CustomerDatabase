@@ -17,4 +17,6 @@ public class CustomerService {
 				.createNamedQuery("customer.selectAll", Customer.class)
 				.getResultList();
 	}
+	
+	// TODO ADD function for Filter (bookmark)
 }
