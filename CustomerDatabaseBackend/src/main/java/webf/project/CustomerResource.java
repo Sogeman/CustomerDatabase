@@ -84,4 +84,10 @@ public class CustomerResource {
 		return customerService.getAllCustomers();
 	}
 	
+	@GET
+	@Path("/{status}/{text}")
+	public List<Customer> retrieveAllFiltered(@PathParam("status") boolean status, @PathParam("text") String text) {
+		return customerService.getAllCustomers(status, text);
+	}
+	
 }

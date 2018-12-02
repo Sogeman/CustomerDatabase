@@ -8,7 +8,7 @@
     <th><button (click)="addCustomer()">Hinzufügen</button></th>
   </thead>
   <tbody>
-    <tr *ngFor="let customer of customerList">
+    <tr *ngFor="let customer of customerList" (click)="editCustomer(customer)">
       <td>{{ customer.id }}</td>
       <td>{{ customer.firstName }}</td>
       <td>{{ customer.lastName }}</td>

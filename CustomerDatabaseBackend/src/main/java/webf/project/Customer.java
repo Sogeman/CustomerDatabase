@@ -1,20 +1,21 @@
 package webf.project;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="t_customer")
-@NamedQuery(name="customer.selectAll", query="Select n from Customer n")
+@NamedQueries({
+	@NamedQuery(name="customer.selectAll", query="SELECT c from Customer c"),
+	@NamedQuery(name="customer.selectAllFiltered", query="SELECT c from Customer c WHERE c.lastName LIKE :filterString"),
+	@NamedQuery(name="customer.selectAllActivated", query="SELECT c from Customer c WHERE c.activated = :activated")
+})
 public class Customer {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) // Primary Key, use server side strategy (auto_increment)
@@ -29,12 +30,12 @@ public class Customer {
 	@Column(length=15, nullable=false)
 	private String birthDate;
 	
-	@Column(nullable=true)
-	private Boolean activated;
+	@Column(nullable=false)
+	private boolean activated;
 	
 	public Customer() {}
 	
-	public Customer(Long id, String firstName, String lastName, String birthdate, Boolean activated) {
+	public Customer(Long id, String firstName, String lastName, String birthdate, boolean activated) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -42,7 +43,7 @@ public class Customer {
 		this.activated = activated;
 	}
 	
-	public Customer(String firstName, String lastName, String birthdate, Boolean activated) {
+	public Customer(String firstName, String lastName, String birthdate, boolean activated) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthdate;
@@ -81,11 +82,11 @@ public class Customer {
 		this.birthDate = birthDate;
 	}
 
-	public Boolean getActivated() {
+	public boolean getActivated() {
 		return activated;
 	}
 
-	public void setActivated(Boolean activated) {
+	public void setActivated(boolean activated) {
 		this.activated = activated;
 	}
 

@@ -18,5 +18,18 @@ public class CustomerService {
 				.getResultList();
 	}
 	
-	// TODO ADD function for Filter (bookmark)
+	public List<Customer> getAllCustomers(boolean status, String text) {
+		if (status == true) {			
+			return entityManager
+					.createNamedQuery("customer.selectAllActivated", Customer.class)
+					.setParameter("activated", status)
+					.getResultList();
+		} else {			
+			String pattern = "%" + text + "%";
+			return entityManager
+					.createNamedQuery("customer.selectAllFiltered", Customer.class)
+					.setParameter("filterString", pattern)
+					.getResultList();
+		}
+	}
 }

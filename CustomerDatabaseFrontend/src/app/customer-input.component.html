@@ -18,7 +18,7 @@
   </p>
   <p>
     <label>Aktiviert:</label>
-    <input name="activated" type="checkbox" [(ngModel)]="customer.activated">
+    <input name="activated" type="checkbox" [value]="false" [(ngModel)]="customer.activated">
   </p>
   <p id="done">
     <button type="button" (click)="clickedOkay()" *ngIf="form.valid">OK</button>

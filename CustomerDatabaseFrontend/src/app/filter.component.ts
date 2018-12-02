@@ -1,9 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { CustomerListComponent } from './customer-list.component';
 
 export class FilterCriteria {
-  activated: boolean;
-  name: boolean;
-  filterText: string;
+  filterByStatus = null;
+  filterString = null;
 }
 
 @Component({
@@ -11,20 +11,27 @@ export class FilterCriteria {
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css']
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent {
 
   @Output() filterSet = new EventEmitter<FilterCriteria>();
-  filterCriteria: FilterCriteria;
+  @Output() remove = new EventEmitter();
+  filter = new FilterCriteria;
 
   constructor() { }
 
-  ngOnInit() {
-    this.filterCriteria = new FilterCriteria();
+  filterList() {
+    console.log(this.filter.filterByStatus + ' ' + this.filter.filterString);
+    this.filterSet.emit(this.filter);
   }
 
-  filterList() {
-    this.filterSet.emit(this.filterCriteria);
-    this.filterCriteria = null;
+  setFilterStringNull() {
+      this.filter.filterString = null;
+  }
+
+  removeFilter() {
+    this.remove.emit();
+    this.filter.filterByStatus = null;
+    this.setFilterStringNull();
   }
 
 }

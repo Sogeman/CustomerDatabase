@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { FilterCriteria } from './filter.component';
+
 
 export class Customer {
   id: number;
   firstName: string;
   lastName: string;
   birthDate: string;
-  activated: boolean;
+  activated = false;
 }
 
 const CUSTOMER_RESOURCE_URL = 'http://localhost:8080/customers/resources/customers';
@@ -17,6 +19,7 @@ const CUSTOMER_RESOURCE_URL = 'http://localhost:8080/customers/resources/custome
 export class CustomerService {
 
   customer: Customer;
+  filtercriteria: FilterCriteria;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -32,6 +35,12 @@ export class CustomerService {
     return this.httpClient.get<Customer[]>(CUSTOMER_RESOURCE_URL).toPromise();
   }
 
+  retrieveAllFiltered(filterCriteria: FilterCriteria): Promise<Customer[]> {
+    return this.httpClient.get<Customer[]>(
+      CUSTOMER_RESOURCE_URL + '/' + filterCriteria.filterByStatus + '/' + filterCriteria.filterString)
+      .toPromise();
+  }
+
   update(customer: Customer): Promise<any> {
     return this.httpClient.put(CUSTOMER_RESOURCE_URL + '/' + customer.id, customer).toPromise();
   }
@@ -40,6 +49,6 @@ export class CustomerService {
     return this.httpClient.delete(CUSTOMER_RESOURCE_URL + '/' + id).toPromise();
   }
 
-  // TODO! create function for filter
+  // TODO! fix the filtered refresh
 
 }

@@ -1,6 +1,7 @@
   <div>
-    <input type="radio" name="filteroption" value="activated" [(ngModel)]="filterCriteria.activated"> Activated
-    <input type="radio" name="filteroption" value="name" [(ngModel)]="filterCriteria.name"> Name
-    <input type="text" name="filterText" [(ngModel)]="filterCriteria.filterText">
+    <input type="radio" name="filteroption" #activated [value]="true" [(ngModel)]="filter.filterByStatus" (click)="setFilterStringNull()"> Activated
+    <input type="radio" name="filteroption" #name [value]="false" [(ngModel)]="filter.filterByStatus"> Nachname
+    <input type="text" name="filterString" *ngIf="name.checked" #filterText [(ngModel)]="filter.filterString">
     <button type="button" (click)="filterList()">Filter</button>
+    <button type="button" (click)="removeFilter()" *ngIf="filter.filterByStatus || filter.filterString">Remove Filter</button>
   </div>

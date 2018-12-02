@@ -23,6 +23,11 @@ export class CustomerListComponent implements OnInit {
       .then(customerList => this.customerList = customerList);
   }
 
+  refreshFiltered(filterCriteria) {
+    this.customerService.retrieveAllFiltered(filterCriteria)
+      .then(customerList => this.customerList = customerList);
+  }
+
   addCustomer() {
     this.add.emit();
   }
