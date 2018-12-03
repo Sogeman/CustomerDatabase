@@ -18,18 +18,10 @@ public class CustomerService {
 				.getResultList();
 	}
 	
-	public List<Customer> getAllCustomers(boolean status, String text) {
-		if (status == true) {			
+	public List<Customer> getAllCustomers(boolean status) {	
 			return entityManager
 					.createNamedQuery("customer.selectAllActivated", Customer.class)
 					.setParameter("activated", status)
 					.getResultList();
-		} else {			
-			String pattern = "%" + text + "%";
-			return entityManager
-					.createNamedQuery("customer.selectAllFiltered", Customer.class)
-					.setParameter("filterString", pattern)
-					.getResultList();
-		}
 	}
 }

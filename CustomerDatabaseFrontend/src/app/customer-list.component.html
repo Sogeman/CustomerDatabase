@@ -1,4 +1,4 @@
-<table>
+<table id="customers">
   <thead>
     <th>ID</th>
     <th>Vorname</th>
@@ -12,7 +12,7 @@
       <td>{{ customer.id }}</td>
       <td>{{ customer.firstName }}</td>
       <td>{{ customer.lastName }}</td>
-      <td>{{ customer.birthDate }}</td>
+      <td>{{ customer.birthDate | date:'dd.MM.yyyy'}}</td>
       <td><img [src]="(customer.activated == true) ? 'assets/true.png' : 'assets/false.png'"></td>
       <td>
         <button (click)="editCustomer(customer)"><img src="assets/edit.png"></button>

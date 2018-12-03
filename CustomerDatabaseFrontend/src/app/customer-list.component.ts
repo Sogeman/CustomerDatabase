@@ -23,8 +23,8 @@ export class CustomerListComponent implements OnInit {
       .then(customerList => this.customerList = customerList);
   }
 
-  refreshFiltered(filterCriteria) {
-    this.customerService.retrieveAllFiltered(filterCriteria)
+  refreshFiltered(activationState: boolean) {
+    this.customerService.retrieveAllFiltered(activationState)
       .then(customerList => this.customerList = customerList);
   }
 
@@ -41,6 +41,12 @@ export class CustomerListComponent implements OnInit {
       this.customerService.delete(customer.id)
         .then(() => this.refresh());
     }
+  }
+
+  overwriteCustomerList(searchString: string) {
+    this.customerService.retrieveAll()
+      .then(customerList => customerList.filter(customer => customer.lastName.toLowerCase().includes(searchString.toLowerCase())))
+      .then(filteredCustomerlist => this.customerList = filteredCustomerlist);
   }
 
 }

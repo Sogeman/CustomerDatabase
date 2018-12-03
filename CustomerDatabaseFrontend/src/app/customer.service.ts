@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FilterCriteria } from './filter.component';
-
 
 export class Customer {
   id: number;
@@ -19,7 +17,6 @@ const CUSTOMER_RESOURCE_URL = 'http://localhost:8080/customers/resources/custome
 export class CustomerService {
 
   customer: Customer;
-  filtercriteria: FilterCriteria;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -35,9 +32,9 @@ export class CustomerService {
     return this.httpClient.get<Customer[]>(CUSTOMER_RESOURCE_URL).toPromise();
   }
 
-  retrieveAllFiltered(filterCriteria: FilterCriteria): Promise<Customer[]> {
+  retrieveAllFiltered(activatedFilter: boolean): Promise<Customer[]> {
     return this.httpClient.get<Customer[]>(
-      CUSTOMER_RESOURCE_URL + '/' + filterCriteria.filterByStatus + '/' + filterCriteria.filterString)
+      CUSTOMER_RESOURCE_URL + '/activated/' + activatedFilter)
       .toPromise();
   }
 

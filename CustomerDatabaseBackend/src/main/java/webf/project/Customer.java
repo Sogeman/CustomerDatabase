@@ -13,7 +13,6 @@ import javax.persistence.Table;
 @Table(name="t_customer")
 @NamedQueries({
 	@NamedQuery(name="customer.selectAll", query="SELECT c from Customer c"),
-	@NamedQuery(name="customer.selectAllFiltered", query="SELECT c from Customer c WHERE c.lastName LIKE :filterString"),
 	@NamedQuery(name="customer.selectAllActivated", query="SELECT c from Customer c WHERE c.activated = :activated")
 })
 public class Customer {

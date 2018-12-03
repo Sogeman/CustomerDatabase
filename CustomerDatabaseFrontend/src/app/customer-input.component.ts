@@ -8,7 +8,7 @@ import { Customer, CustomerService } from './customer.service';
 })
 export class CustomerInputComponent {
 
-  @Output() ok = new EventEmitter<Customer>(); // specific emit not necessry?
+  @Output() ok = new EventEmitter<Customer>(); // specific emit not necessary?
   customer: Customer;
   today: number =  Date.now();
 

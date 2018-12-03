@@ -1,10 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { CustomerListComponent } from './customer-list.component';
-
-export class FilterCriteria {
-  filterByStatus = null;
-  filterString = null;
-}
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-filter',
@@ -13,25 +7,24 @@ export class FilterCriteria {
 })
 export class FilterComponent {
 
-  @Output() filterSet = new EventEmitter<FilterCriteria>();
+  @Output() filterSet = new EventEmitter<boolean>();
   @Output() remove = new EventEmitter();
-  filter = new FilterCriteria;
+  @Output() frontendFilter = new EventEmitter<string>();
 
   constructor() { }
 
-  filterList() {
-    console.log(this.filter.filterByStatus + ' ' + this.filter.filterString);
-    this.filterSet.emit(this.filter);
-  }
-
-  setFilterStringNull() {
-      this.filter.filterString = null;
+  filterList(activationState: boolean) {
+    console.log('filtered by ' + activationState);
+    this.filterSet.emit(activationState);
   }
 
   removeFilter() {
+    console.log('filter removed');
     this.remove.emit();
-    this.filter.filterByStatus = null;
-    this.setFilterStringNull();
   }
 
+  startFilteringFrontendOnly(searchString: string) {
+    this.frontendFilter.emit(searchString);
+    console.log(searchString);
+  }
 }
