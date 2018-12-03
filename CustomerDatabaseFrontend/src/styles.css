@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#customers {
+    border-collapse: collapse;
+    width: 50%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color:darkgoldenrod;
+    color: white;
+    text-align: center;
+}
+
+#customers td:first-child {
+  text-align: right;
+}
+
+#customers td:nth-last-child(-n+2) {
+  text-align: center;
+}
+
+button {
+  padding: 5px;
+  background-color: rgb(212, 181, 123);
+  color: black;
+}
