@@ -46,6 +46,4 @@ export class CustomerService {
     return this.httpClient.delete(CUSTOMER_RESOURCE_URL + '/' + id).toPromise();
   }
 
-  // TODO! fix the filtered refresh
-
 }
