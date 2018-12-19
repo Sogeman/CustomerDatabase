@@ -10,6 +10,7 @@ export class CustomerListComponent implements OnInit {
 
   @Output() add = new EventEmitter();
   @Output() edit = new EventEmitter<number>();
+  @Output() deleted = new EventEmitter();
   customerList: Customer[];
 
   constructor(private customerService: CustomerService) { }
@@ -39,6 +40,7 @@ export class CustomerListComponent implements OnInit {
   deleteCustomer(customer: Customer) {
     if (confirm('Wirklich löschen?')) {
       this.customerService.delete(customer.id)
+        .then(() => this.deleted.emit())
         .then(() => this.refresh());
     }
   }

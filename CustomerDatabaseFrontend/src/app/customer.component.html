@@ -1,4 +1,4 @@
 <h1>Kundenverwaltung</h1>
 <app-filter (filterSet)="list.refreshFiltered($event)" (remove)="list.refresh()" (frontendFilter)="list.overwriteCustomerList($event)"></app-filter>
-<app-customer-list #list (add)="input.startAdding()" (edit)="input.startEditing($event)"></app-customer-list>
+<app-customer-list #list (add)="input.startAdding()" (edit)="input.startEditing($event)" (deleted)="input.clearCustomer()"></app-customer-list>
 <app-customer-input #input (ok)="list.refresh()"></app-customer-input>

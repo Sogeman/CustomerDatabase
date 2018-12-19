@@ -8,11 +8,11 @@
     <th><button (click)="addCustomer()">Hinzufügen</button></th>
   </thead>
   <tbody>
-    <tr *ngFor="let customer of customerList" (click)="editCustomer(customer)">
-      <td>{{ customer.id }}</td>
-      <td>{{ customer.firstName }}</td>
-      <td>{{ customer.lastName }}</td>
-      <td>{{ customer.birthDate | date:'dd.MM.yyyy'}}</td>
+    <tr *ngFor="let customer of customerList">
+      <td (click)="editCustomer(customer)">{{ customer.id }}</td>
+      <td (click)="editCustomer(customer)">{{ customer.firstName }}</td>
+      <td (click)="editCustomer(customer)">{{ customer.lastName }}</td>
+      <td (click)="editCustomer(customer)">{{ customer.birthDate | date:'dd.MM.yyyy'}}</td>
       <td><img [src]="(customer.activated == true) ? 'assets/true.png' : 'assets/false.png'"></td>
       <td>
         <button (click)="editCustomer(customer)"><img src="assets/edit.png"></button>

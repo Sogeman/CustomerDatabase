@@ -39,7 +39,7 @@ export class CustomerInputComponent {
     }
   }
 
-  clickedCancel() {
+  clearCustomer() {
     // emit not necessary in this case
     this.customer = null;
   }
