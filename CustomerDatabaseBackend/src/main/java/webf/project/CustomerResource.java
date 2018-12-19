@@ -87,7 +87,7 @@ public class CustomerResource {
 	@GET
 	@Path("/activated/{status}")
 	public List<Customer> retrieveAllFiltered(@PathParam("status") boolean status) {
-		return customerService.getAllCustomers(status);
+		return customerService.getAllCustomersByActivationStatus(status);
 	}
 	
 }

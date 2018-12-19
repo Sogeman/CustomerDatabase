@@ -18,7 +18,7 @@ public class CustomerService {
 				.getResultList();
 	}
 	
-	public List<Customer> getAllCustomers(boolean status) {	
+	public List<Customer> getAllCustomersByActivationStatus(boolean status) {	
 			return entityManager
 					.createNamedQuery("customer.selectAllActivated", Customer.class)
 					.setParameter("activated", status)
